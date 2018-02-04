@@ -11,6 +11,6 @@
     <title>Hello grom DAO</title>
 </head>
 <body>
-<h1>${requestScope.hellomsg}</h1>
+<h1>${requestScope.currentUser.name}</h1>
 </body>
 </html>

@@ -13,7 +13,7 @@ import java.io.IOException;
 public class ControllerTest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("hellomsg", new ServiceTest().getStringValue());
-        req.getRequestDispatcher("/WEB-INF/jsp/test.jsp").forward(req,resp);
+        req.setAttribute("currentUser", new ServiceTest().getUserTest());
+        req.getRequestDispatcher("/WEB-INF/jsp/test.jsp").forward(req, resp);
     }
 }
