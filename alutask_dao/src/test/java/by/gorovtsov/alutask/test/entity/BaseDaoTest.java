@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
 
 public class BaseDaoTest {
     protected static final SessionFactory SESSION_FACTORY
-            = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+            = new Configuration().configure().buildSessionFactory();
     @Test
     public void findAllUsersGenericTest(){
         Session session = SESSION_FACTORY.openSession();
@@ -37,10 +37,10 @@ public class BaseDaoTest {
 
         DeveloperDao dao = new DeveloperDao();
 
-        Developer developer = new Developer("Baraban Pistoletov", "villy", "woop@gmail.com", "pass123",
-                ProgrammingLanguage.PHP, DeveloperLevel.SENIOR);
+        //Developer developer = new Developer("Baraban Pistoletov", "villy", "woop@gmail.com", "pass123",
+          //      ProgrammingLanguage.PHP, DeveloperLevel.SENIOR);
 
-        session.save(developer);
+        //session.save(developer);
 
         Developer foundDeveloper = session.createQuery("select d from Developer d where d.login = :devLogin", Developer.class)
                 .setParameter("devLogin", "treble")

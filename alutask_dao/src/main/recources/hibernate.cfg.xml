@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="dialect">org.hibernate.dialect.MySQL57Dialect</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/alutask_db</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">Gfhjkm123</property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+
+        <mapping class="by.gorovtsov.alutask.entity.user.User"/>
+        <mapping class="by.gorovtsov.alutask.entity.project.Task"/>
+        <mapping class="by.gorovtsov.alutask.entity.message.Comment"/>
+        <mapping class="by.gorovtsov.alutask.entity.project.Project"/>
+        <mapping class="by.gorovtsov.alutask.entity.message.Letter"/>
+        <mapping class="by.gorovtsov.alutask.entity.user.Manager"/>
+        <mapping class="by.gorovtsov.alutask.entity.user.Developer"/>
+        <mapping class="by.gorovtsov.alutask.entity.Filter"/>
+
+    </session-factory>
+</hibernate-configuration>

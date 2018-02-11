@@ -133,13 +133,13 @@ public class EntitySaveTest {
                 ProgrammingLanguage.JAVA, DeveloperLevel.GOD));
 
         session.save(new Manager("Vincenzo", "vine", "vine@rambler.ru", "vase432",
-                Department.SALES));
+            Department.SALES));
 
         Manager manager = session.createQuery("select m from Manager m where m.login = :managerLogin", Manager.class)
-                .setParameter("managerLogin", "vine").getSingleResult();
+              .setParameter("managerLogin", "vine").getSingleResult();
 
         Developer developer = session.createQuery("select d from Developer d where d.login = :developerLogin", Developer.class)
-                .setParameter("developerLogin", "alala").getSingleResult();
+              .setParameter("developerLogin", "alala").getSingleResult();
 
         session.save(new Project(manager, "Testing comment", "Test project for comment", timer));
 
