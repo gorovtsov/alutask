@@ -22,22 +22,29 @@
     </div>
 
     <div id="main">
-        <form action="developers" method="get">
-            <select name="elementsToShow">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-            </select>
-            <input type="submit" value="Refresh list">
-        </form>
 
-        <c:forEach var="pageNum" items="${requestScope.pageNums}">
-            <form action="developers" method="get">
-                <input type="hidden" name="pageToShow" value="${pageNum}">
-                <input type="submit" value="${pageNum}">
-            </form>
+        <table>
+            <tr>
+                <th>
+                    <form action="developers" method="get">
+                        <select name="elementsToShow">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </select>
+                        <input type="submit" value="Refresh list">
+                    </form>
+                </th>
+                <c:forEach var="pageNum" items="${requestScope.pageNums}">
+                    <th>
+                    <form action="developers" method="get">
+                        <input type="hidden" name="pageToShow" value="${pageNum}">
+                        <input type="submit" value="${pageNum}">
+                    </form>
+                    </th>
         </c:forEach>
-
+            </tr>
+        </table>
         <table>
             <tr>
                 <th>Login</th>
