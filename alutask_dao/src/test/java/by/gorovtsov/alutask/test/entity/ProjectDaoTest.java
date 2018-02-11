@@ -16,7 +16,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class ProjectDaoTest {
-    private static final SessionFactory SESSION_FACTORY = new Configuration().configure().buildSessionFactory();
+    private static final SessionFactory SESSION_FACTORY = new Configuration().configure("hibernate-test.cfg.xml").buildSessionFactory();
 
     @Test
     public void openProjectTest(){
@@ -30,10 +30,10 @@ public class ProjectDaoTest {
                 Department.FRONTEND));
         Manager manager = session.createQuery("select m from Manager m where m.login = :managerLogin", Manager.class)
                 .setParameter("managerLogin", "tryharder").getSingleResult();
-        projectDao.openProject(new Project(manager, "First great project!", "It's amazing description!", timer));
+        projectDao.openProject(new Project(manager, "Great project!", "It's amazing description!", timer));
 
         foundProject = session.createQuery("select p from Project p where p.name = :projName", Project.class)
-                .setParameter("projName", "First great project!")
+                .setParameter("projName", "Great project!")
                 .getSingleResult();
 
         session.close();

@@ -22,7 +22,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class EntitySaveTest {
-    private static final SessionFactory SESSION_FACTORY = new Configuration().configure().buildSessionFactory();
+    private static final SessionFactory SESSION_FACTORY = new Configuration().configure("hibernate-test.cfg.xml").buildSessionFactory();
 
     @Test
     public void saveDeveloperTest(){
@@ -46,7 +46,7 @@ public class EntitySaveTest {
 
     @Test
     public void saveManagerTest(){
-        Manager manager = new Manager("Victor Drobov", "drob", "drob@rambler.ru", "podkat1",
+        Manager manager = new Manager("Jordi Alba", "jordi", "jordi@rambler.ru", "podkat1",
                 Department.WEB);
         Manager foundManager;
 
@@ -59,10 +59,10 @@ public class EntitySaveTest {
         session.getTransaction().commit();
 
 
-        foundManager = session.createQuery("select m from Manager m where m.name = :managerName", Manager.class)
-                .setParameter("managerName", manager.getName()).setMaxResults(1).getSingleResult();
+        //foundManager = session.createQuery("select m from Manager m where m.name = :managerName", Manager.class)
+          //      .setParameter("managerName", manager.getName()).setMaxResults(1).getSingleResult();
 
-        assertThat(foundManager.getDepartment(), is(Department.WEB));
+        assertThat(manager.getDepartment(), is(Department.WEB));
     }
 
     @Test
@@ -74,13 +74,13 @@ public class EntitySaveTest {
 
         Session session = SESSION_FACTORY.openSession();
 
-        //session.save(new Manager("Johny Knoxvillelol", "jackss", "johnyhard@rambler.ru", "runner3",
-          //      Department.FRONTEND));
+        session.save(new Manager("Johny Knoxville", "jackss", "johnyhard@rambler.ru", "runner3",
+                Department.FRONTEND));
 
         Manager manager = session.createQuery("select m from Manager m where m.login = :managerLogin", Manager.class)
                 .setParameter("managerLogin", "jackss").getSingleResult();
 
-        //session.save(new Project(manager, "Knoxville project", "It's amazing description!", timer));
+        session.save(new Project(manager, "Knoxville project", "It's amazing description!", timer));
 
         foundProject = session.createQuery("select p from Project p where p.manager.name = :managerName", Project.class)
                 .setParameter("managerName", "Johny Knoxville").getSingleResult();
@@ -161,21 +161,20 @@ public class EntitySaveTest {
 
     @Test
     public void saveFilterTest(){
-
-        Filter foundFilter;
-
         Session session = SESSION_FACTORY.openSession();
 
-        session.save(new Manager("Filter Filtrovich", "filterman", "filter@rambler.ru", "runner3",
-                Department.FRONTEND));
+        Manager manager = new Manager("Filter Filtrovich", "filterman", "filter@rambler.ru", "runner3",
+                Department.FRONTEND);
 
-        Manager manager = session.createQuery("select m from Manager m where m.login = :managerLogin", Manager.class)
-                .setParameter("managerLogin", "tryharder").getSingleResult();
+        session.saveOrUpdate(manager);
 
-        session.save(new Filter(manager, "Test filter"));
+        Filter filter = new Filter(manager, "Test filter");
 
-        foundFilter = session.createQuery("select f from Filter f where f.name = :name", Filter.class)
+        session.save(filter);
+
+        Filter foundFilter = session.createQuery("select f from Filter f where f.name = :name", Filter.class)
                 .setParameter("name", "Test filter").getSingleResult();
-        assertThat(foundFilter.getName(), is("Test filter"));
+
+        assertThat(filter.getName(), is("Test filter"));
     }
 }

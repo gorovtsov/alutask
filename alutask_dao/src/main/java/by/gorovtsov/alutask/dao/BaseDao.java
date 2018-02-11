@@ -20,24 +20,17 @@ public abstract class BaseDao<T extends BaseEntity> {
 
     public Long saveOrUpdate(T objectToSave) {
         Session session = SESSION_FACTORY.openSession();
-        session.beginTransaction();
 
         session.saveOrUpdate(objectToSave);
 
-        session.getTransaction().commit();
         session.close();
 
         return objectToSave.getId();
     }
 
-    public T findById(Long id) {
-        Session session = SESSION_FACTORY.openSession();
-        session.beginTransaction();
+    public T findById(Long id, Session session) {
 
         T result = session.get(entityClass, id);
-
-        session.getTransaction().commit();
-        session.close();
         return result;
     }
 
@@ -50,8 +43,7 @@ public abstract class BaseDao<T extends BaseEntity> {
         return result;
     }
 
-    public void delete(T objectToDelete) {
-        Session session = SESSION_FACTORY.openSession();
+    public void delete(T objectToDelete, Session session) {
         String simpleClassName = entityClass.getSimpleName();
         session.beginTransaction();
         session.createQuery("delete from " + simpleClassName + " o where o.id = :entityId")
@@ -59,6 +51,5 @@ public abstract class BaseDao<T extends BaseEntity> {
                 .executeUpdate();
 
         session.getTransaction().commit();
-        session.close();
     }
 }
