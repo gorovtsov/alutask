@@ -22,6 +22,23 @@
     </div>
 
     <div id="main">
+        <form action="developers" method="get">
+            <select name="elementsToShow">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+            </select>
+            <input type="submit" value="Refresh list">
+        </form>
+
+
+            <form action="developers" method="get">
+                <c:forEach var="pageNum" items="${requestScope.pageNums}">
+                    <input type="submit" name="pageToShow" value="${pageNum}">
+                </c:forEach>
+            </form>
+
+
         <table>
             <tr>
                 <th>Login</th>
@@ -29,10 +46,9 @@
                 <th>e-Mail</th>
                 <th>Programming Language</th>
                 <th>Level</th>
-                <th></th>
             </tr>
 
-            <c:forEach var="developer" items="${requestScope.developerList}">
+            <c:forEach var="developer" items="${requestScope.developers}">
                 <tr>
                     <td align="center"><c:out value="${developer.login}"/></td>
                     <td align="center"><c:out value="${developer.name}"/></td>

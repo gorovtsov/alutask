@@ -30,7 +30,7 @@ public class ProjectDaoTest {
                 Department.FRONTEND));
         Manager manager = session.createQuery("select m from Manager m where m.login = :managerLogin", Manager.class)
                 .setParameter("managerLogin", "tryharder").getSingleResult();
-        projectDao.openProject(new Project(manager, "Great project!", "It's amazing description!", timer));
+        projectDao.openProject(new Project(manager, "Great project!", "It's amazing description!", timer), session);
 
         foundProject = session.createQuery("select p from Project p where p.name = :projName", Project.class)
                 .setParameter("projName", "Great project!")
@@ -40,6 +40,6 @@ public class ProjectDaoTest {
 
         System.out.println(foundProject.getName());
 
-        assertThat(foundProject.getName(), is("First great project!"));
+        assertThat(foundProject.getName(), is("Great project!"));
     }
 }

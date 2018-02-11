@@ -7,8 +7,7 @@ import by.gorovtsov.alutask.entity.user.Manager;
 import org.hibernate.Session;
 
 public class ManagerDao extends BaseDao<Manager> {
-    public void addDeveloperToProject(Developer developer, Project project) {
-        Session session = SESSION_FACTORY.openSession();
+    public void addDeveloperToProject(Developer developer, Project project, Session session) {
 
         session.beginTransaction();
 
@@ -17,6 +16,5 @@ public class ManagerDao extends BaseDao<Manager> {
 
         project.addDeveloper(developer);
         session.getTransaction().commit();
-        session.close();
     }
 }

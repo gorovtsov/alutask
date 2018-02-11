@@ -47,9 +47,10 @@ public class BaseDaoTest {
 
         newSession.close();
 
-
+        Session updateSession = SESSION_FACTORY.openSession();
         foundDeveloper.setLanguage(ProgrammingLanguage.PYTHON);
-        long generatedId = dao.saveOrUpdate(foundDeveloper);
+        long generatedId = dao.saveOrUpdate(foundDeveloper, updateSession);
+        updateSession.close();
 
         assertEquals(generatedId, foundDeveloper.getId());
     }

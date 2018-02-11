@@ -8,8 +8,8 @@ import org.hibernate.Session;
 import java.util.List;
 
 public class ProjectDao extends BaseDao<Project> {
-    public void openProject(Project projectToOpen) {
-        super.saveOrUpdate(projectToOpen);
+    public void openProject(Project projectToOpen, Session session) {
+        super.saveOrUpdate(projectToOpen, session);
     }
 
     public List<Project> findProjectByManager(Manager manager) {

@@ -38,10 +38,12 @@ public class ManagerDaoTest {
                 ProgrammingLanguage.C, DeveloperLevel.SENIOR);
         Project project = new Project(manager, "ProjectDaoTestCool!", "It's amazing description!", timer);
 
-        managerDao.saveOrUpdate(manager);
-        developerDao.saveOrUpdate(developer);
-        projectDao.openProject(project);
-        managerDao.addDeveloperToProject(developer, project);
+        Session savingSession = SESSION_FACTORY.openSession();
+        managerDao.saveOrUpdate(manager, savingSession);
+        developerDao.saveOrUpdate(developer, savingSession);
+        projectDao.openProject(project, savingSession);
+        managerDao.addDeveloperToProject(developer, project, savingSession);
+        savingSession.close();
 
         Developer testDeveloper = session.createQuery("select d from Developer d where name = :devName", Developer.class)
                 .setParameter("devName", "Zheka Vino")

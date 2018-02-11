@@ -9,7 +9,7 @@
         <property name="dialect">org.hibernate.dialect.H2Dialect</property>
         <property name="connection.url">jdbc:h2:mem:test:alutask_db</property>
         <property name="connection.username">sa</property>
-        <property name="connection.password" />
+        <property name="connection.password">test</property>
         <property name="hbm2ddl.auto">create-drop</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>

@@ -18,12 +18,9 @@ public abstract class BaseDao<T extends BaseEntity> {
         entityClass = (Class<T>) parameterizedSuperclass.getActualTypeArguments()[0];
     }
 
-    public Long saveOrUpdate(T objectToSave) {
-        Session session = SESSION_FACTORY.openSession();
+    public Long saveOrUpdate(T objectToSave, Session session) {
 
         session.saveOrUpdate(objectToSave);
-
-        session.close();
 
         return objectToSave.getId();
     }

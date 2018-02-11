@@ -22,7 +22,9 @@
     </div>
 
     <div id="main">
-
+        <form action="developers" method="get">
+            <input type="submit" name="toDevs" value="ShowDevelopers" />
+        </form>
     </div>
 
     <div id="sidebar">
