@@ -21,10 +21,17 @@ public class ControllerTest extends HttpServlet {
         int elemsOnPage = 5;
         int pageNum = 1;
         List<Developer> developers = null;
+
+        if(req.getSession().getAttribute("currentElementsToShow") != null){
+            elemsOnPage = Integer.parseInt(req.getSession().getAttribute("currentElementsToShow").toString());
+        }
+
         if(req.getParameter("elementsToShow") != null) {
             elemsOnPage = Integer.parseInt(req.getParameter("elementsToShow"));
-            System.out.println(req.getParameter("elementsToShow"));
+            req.getSession().setAttribute("currentElementsToShow", elemsOnPage);
+            System.out.println(elemsOnPage + " DEBUGGING");
         }
+
 
 
         if(req.getParameter("pageToShow") != null){
@@ -40,9 +47,8 @@ public class ControllerTest extends HttpServlet {
             developers = entry.getValue();
         }
 
-        long pagesCount = rowCount % elemsOnPage;
+        long pagesCount = rowCount / elemsOnPage + 1;
         List<Long> pageNums = new ArrayList<Long>();
-
         for (long i = 1; i <= pagesCount; i++){
             pageNums.add(i);
         }

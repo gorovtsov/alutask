@@ -31,13 +31,12 @@
             <input type="submit" value="Refresh list">
         </form>
 
-
+        <c:forEach var="pageNum" items="${requestScope.pageNums}">
             <form action="developers" method="get">
-                <c:forEach var="pageNum" items="${requestScope.pageNums}">
-                    <input type="submit" name="pageToShow" value="${pageNum}">
-                </c:forEach>
+                <input type="hidden" name="pageToShow" value="${pageNum}">
+                <input type="submit" value="${pageNum}">
             </form>
-
+        </c:forEach>
 
         <table>
             <tr>
