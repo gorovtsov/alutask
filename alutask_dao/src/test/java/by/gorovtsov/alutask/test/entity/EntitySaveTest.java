@@ -7,7 +7,6 @@ import by.gorovtsov.alutask.entity.project.Project;
 import by.gorovtsov.alutask.entity.project.Task;
 import by.gorovtsov.alutask.entity.user.Developer;
 import by.gorovtsov.alutask.entity.user.Manager;
-import by.gorovtsov.alutask.entity.user.User;
 import by.gorovtsov.alutask.enumeration.Department;
 import by.gorovtsov.alutask.enumeration.DeveloperLevel;
 import by.gorovtsov.alutask.enumeration.ProgrammingLanguage;
@@ -24,11 +23,10 @@ import static org.junit.Assert.assertThat;
 
 public class EntitySaveTest {
     private static final SessionFactory SESSION_FACTORY = new Configuration().configure().buildSessionFactory();
-    private static Session session;
 
     @Test
     public void saveDeveloperTest(){
-        Developer developer = new Developer("Alexander Gorovtsov", "garavek", "garavek94@gmail.com", "pass123",
+        Developer developer = new Developer("Ksenia Gorovtsova", "syusya", "sususya@gmail.com", "pass123",
                 ProgrammingLanguage.JAVA, DeveloperLevel.ALEXANDERGOROVTSOV);
         Developer foundDeveloper;
 
@@ -48,7 +46,7 @@ public class EntitySaveTest {
 
     @Test
     public void saveManagerTest(){
-        Manager manager = new Manager("Victor Onopko", "onyx", "onopko-99@rambler.ru", "podkat1",
+        Manager manager = new Manager("Victor Drobov", "drob", "drob@rambler.ru", "podkat1",
                 Department.WEB);
         Manager foundManager;
 
@@ -76,23 +74,22 @@ public class EntitySaveTest {
 
         Session session = SESSION_FACTORY.openSession();
 
-        session.save(new Manager("Carles Puyol", "tryharder", "puy@rambler.ru", "runner3",
-                Department.FRONTEND));
+        //session.save(new Manager("Johny Knoxvillelol", "jackss", "johnyhard@rambler.ru", "runner3",
+          //      Department.FRONTEND));
 
         Manager manager = session.createQuery("select m from Manager m where m.login = :managerLogin", Manager.class)
-                .setParameter("managerLogin", "tryharder").getSingleResult();
+                .setParameter("managerLogin", "jackss").getSingleResult();
 
-        session.save(new Project(manager, "First great project!", "It's amazing description!", timer));
+        //session.save(new Project(manager, "Knoxville project", "It's amazing description!", timer));
 
-        foundProject = session.createQuery("select p from Project p where p.description = :description", Project.class)
-                .setParameter("description", "It's amazing description!").getSingleResult();
-        assertThat(foundProject.getName(), is("First great project!"));
+        foundProject = session.createQuery("select p from Project p where p.manager.name = :managerName", Project.class)
+                .setParameter("managerName", "Johny Knoxville").getSingleResult();
+        assertThat(foundProject.getName(), is("Knoxville project"));
     }
 
     @Test
     public void saveTaskTest(){
 
-        Task task = new Task();
         Task foundTask;
 
         Timer timer = new Timer(LocalDateTime.now(), LocalDateTime.now().plusMonths(1));

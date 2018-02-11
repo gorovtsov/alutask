@@ -20,6 +20,7 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.OneToMany;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -41,7 +42,7 @@ public class Project extends BaseEntity {
             joinColumns = { @JoinColumn(name = "project_id")},
             inverseJoinColumns =  { @JoinColumn(name = "developer_id")}
     )
-    private Set<Developer> developers;
+    private Set<Developer> developers = new HashSet<>();
 
     @OneToMany(mappedBy = "project")
     private Set<Task> tasks;
@@ -54,6 +55,10 @@ public class Project extends BaseEntity {
             @AttributeOverride(name = "end", column = @Column(name = "end_time", nullable = false))
     })
     private Timer timer;
+
+    public void addDeveloper(Developer developer) {
+        this.developers.add(developer);
+    }
 
     public Project(Manager manager, String name, String description, Timer timer) {
         this.manager = manager;

@@ -4,6 +4,7 @@ import by.gorovtsov.alutask.entity.BaseEntity;
 import by.gorovtsov.alutask.entity.embedded.Timer;
 import by.gorovtsov.alutask.entity.message.Comment;
 import by.gorovtsov.alutask.entity.user.Developer;
+import by.gorovtsov.alutask.enumeration.TaskStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,11 +54,15 @@ public class Task extends BaseEntity {
     @Column(name = "close_time")
     private LocalDateTime closeTime;
 
+    @Column(name = "status", nullable = false)
+    private TaskStatus status;
+
     public Task(Project project, String name, String description, Developer developer, Timer timer) {
         this.project = project;
         this.name = name;
         this.description = description;
         this.developer = developer;
         this.timer = timer;
+        this.status = TaskStatus.WAITING;
     }
 }

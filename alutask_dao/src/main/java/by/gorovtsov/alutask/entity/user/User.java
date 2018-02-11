@@ -3,10 +3,11 @@ package by.gorovtsov.alutask.entity.user;
 import by.gorovtsov.alutask.entity.BaseEntity;
 import by.gorovtsov.alutask.entity.message.Letter;
 import by.gorovtsov.alutask.enumeration.Role;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.AllArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -22,6 +23,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")

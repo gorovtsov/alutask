@@ -5,10 +5,11 @@ import by.gorovtsov.alutask.entity.project.Task;
 import by.gorovtsov.alutask.enumeration.DeveloperLevel;
 import by.gorovtsov.alutask.enumeration.ProgrammingLanguage;
 import by.gorovtsov.alutask.enumeration.Role;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.AllArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -24,6 +25,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "developers")
