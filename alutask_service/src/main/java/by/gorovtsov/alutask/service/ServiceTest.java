@@ -16,7 +16,7 @@ public class ServiceTest {
         return developerList;
     }
 
-    public Map<Long, List<Developer>> getDevelopersPortion(int elemsOnPage, int pageNum, ProgrammingLanguage langToFilter, DeveloperLevel devLevelToFilter){
+    public Map<Long, List<Developer>> getDevelopersPortion(int elemsOnPage, int pageNum, ProgrammingLanguage langToFilter, DeveloperLevel devLevelToFilter) {
         return new DeveloperDao().getDevelopersPortion(elemsOnPage, pageNum, langToFilter, devLevelToFilter);
     }
     public static void main(String[] args) {

@@ -25,16 +25,6 @@
 
         <table>
             <tr>
-                <th>
-                    <form action="developers" method="get">
-                        <select name="elementsToShow">
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="15">15</option>
-                        </select>
-                        <input type="submit" value="Refresh list">
-                    </form>
-                </th>
                 <c:forEach var="pageNum" items="${requestScope.pageNums}">
                     <th>
                     <form action="developers" method="get">
@@ -90,14 +80,6 @@
             <input type="submit" value="Refresh list">
         </form>
 
-        <form action="developers" method="get">
-            <select name="programmingLanguageFilter">
-                <c:forEach items="${requestScope.programmingLanguages}" var="programmingLanguage">
-                    <option value="${programmingLanguage}">${programmingLanguage}</option>
-                </c:forEach>
-            </select>
-            <input type="submit" value="Refresh list">
-        </form>
         <p class="beanheading">
             <img src="src/img/sidebarBooks.gif" alt="Alutask" /> <br />
             <span class="slogan">

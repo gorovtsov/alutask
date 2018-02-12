@@ -22,7 +22,7 @@ public class DeveloperDao extends BaseDao<Developer> {
         return result;
     }
 
-    public Map<Long, List<Developer>> getDevelopersPortion(int elemsOnPage, int pageNum, ProgrammingLanguage langToFilter, DeveloperLevel devLevelToFilter){
+    public Map<Long, List<Developer>> getDevelopersPortion(int elemsOnPage, int pageNum, ProgrammingLanguage langToFilter, DeveloperLevel devLevelToFilter) {
         Session session = SESSION_FACTORY.openSession();
 
         DeveloperLevel level = null;
@@ -31,11 +31,11 @@ public class DeveloperDao extends BaseDao<Developer> {
         QDeveloper developer = QDeveloper.developer;
         query.select(developer)
                 .from(developer);
-        if (langToFilter != null){
+        if (langToFilter != null) {
             query.where(developer.language.eq(langToFilter));
         }
 
-        if (devLevelToFilter != null){
+        if (devLevelToFilter != null) {
             query.where(developer.level.eq(devLevelToFilter));
         }
 

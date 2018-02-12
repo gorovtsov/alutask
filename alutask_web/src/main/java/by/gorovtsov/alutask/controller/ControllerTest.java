@@ -31,37 +31,35 @@ public class ControllerTest extends HttpServlet {
         req.setAttribute("developerLevels", DeveloperLevel.values());
         System.out.println("DEBUNG 1 " + langToFilter + " " + devLevelToFilter);
 
-        if(req.getSession().getAttribute("currentProgLanguageFilter")!= null){
+        if (req.getSession().getAttribute("currentProgLanguageFilter") != null) {
             langToFilter = ProgrammingLanguage.valueOf(req.getSession().getAttribute("currentProgLanguageFilter").toString());
-            if (req.getSession().getAttribute("currentDevLevelFilter")!= null){
+            if (req.getSession().getAttribute("currentDevLevelFilter") != null) {
                 devLevelToFilter = DeveloperLevel.valueOf(req.getSession().getAttribute("currentDevLevelFilter").toString());
                 System.out.println("DEBUNG 2 " + langToFilter + " " + devLevelToFilter);
             }
         }
 
-        if(req.getParameter("programmingLanguageFilter") != null){
+        if (req.getParameter("programmingLanguageFilter") != null) {
             langToFilter = ProgrammingLanguage.valueOf(req.getParameter("programmingLanguageFilter").toString());
-            if(req.getParameter("developerLevelFilter") != null){
+            if (req.getParameter("developerLevelFilter") != null) {
                 devLevelToFilter = DeveloperLevel.valueOf(req.getParameter("developerLevelFilter").toString());
             }
         }
-       // System.out.println(req.getAttribute("programmingLanguageFilter").toString());
-        System.out.println("DEBUNG 3 " + langToFilter + " " + devLevelToFilter);
 
         req.getSession().setAttribute("currentProgLanguageFilter", langToFilter);
         req.getSession().setAttribute("currentDevLevelFilter", devLevelToFilter);
 
 
-        if(req.getSession().getAttribute("currentElementsToShow") != null){
+        if (req.getSession().getAttribute("currentElementsToShow") != null) {
             elemsOnPage = Integer.parseInt(req.getSession().getAttribute("currentElementsToShow").toString());
         }
 
-        if(req.getParameter("elementsToShow") != null) {
+        if (req.getParameter("elementsToShow") != null) {
             elemsOnPage = Integer.parseInt(req.getParameter("elementsToShow"));
             req.getSession().setAttribute("currentElementsToShow", elemsOnPage);
         }
 
-        if(req.getParameter("pageToShow") != null){
+        if (req.getParameter("pageToShow") != null) {
             pageNum = Integer.parseInt(req.getParameter("pageToShow"));
             System.out.println(Integer.parseInt(req.getParameter("pageToShow")));
         }
@@ -76,11 +74,9 @@ public class ControllerTest extends HttpServlet {
 
         long pagesCount = rowCount / elemsOnPage + 1;
         List<Long> pageNums = new ArrayList<>();
-        for (long i = 1; i <= pagesCount; i++){
+        for (long i = 1; i <= pagesCount; i++) {
             pageNums.add(i);
         }
-
-        System.out.println("DEBUNG 4 " + langToFilter + " " + devLevelToFilter);
 
         req.setAttribute("pageNums", pageNums);
         req.setAttribute("developers", developers);
