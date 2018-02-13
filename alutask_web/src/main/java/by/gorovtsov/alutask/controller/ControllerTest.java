@@ -18,9 +18,11 @@ import java.util.Map;
 @WebServlet("/developers")
 public class ControllerTest extends HttpServlet {
 
+    public static final int DEFAULT_PAGE_SIZE_VALUE = 5;
+    private int elemsOnPage = DEFAULT_PAGE_SIZE_VALUE;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int elemsOnPage = 5;
         int pageNum = 1;
         List<Developer> developers = null;
 
