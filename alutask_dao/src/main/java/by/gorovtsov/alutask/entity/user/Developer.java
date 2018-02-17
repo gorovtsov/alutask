@@ -5,11 +5,7 @@ import by.gorovtsov.alutask.entity.project.Task;
 import by.gorovtsov.alutask.enumeration.DeveloperLevel;
 import by.gorovtsov.alutask.enumeration.ProgrammingLanguage;
 import by.gorovtsov.alutask.enumeration.Role;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.AllArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -22,6 +18,7 @@ import javax.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 @Getter
 @Setter
