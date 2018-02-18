@@ -4,9 +4,8 @@ import by.gorovtsov.alutask.entity.user.Developer;
 import by.gorovtsov.alutask.enumeration.DeveloperLevel;
 import by.gorovtsov.alutask.enumeration.ProgrammingLanguage;
 import by.gorovtsov.alutask.service.DeveloperService;
-import by.gorovtsov.alutask.service.impl.BeanHolderService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import by.gorovtsov.alutask.service.BeanHolderService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,8 +20,7 @@ import java.util.List;
 @WebServlet("/developers")
 public class ControllerTest extends HttpServlet {
 
-    @Autowired
-    DeveloperService developerService;
+    DeveloperService developerService = BeanHolderService.getDeveloperService();
 
     public static final int DEFAULT_PAGE_SIZE_VALUE = 5;
     private int pageSize = DEFAULT_PAGE_SIZE_VALUE;
@@ -74,8 +72,7 @@ public class ControllerTest extends HttpServlet {
             System.out.println(Integer.parseInt(req.getParameter("pageToShow")));
         }
 
-        developers = developerService.findAll(pageNum, pageSize, language, level);
-        //Map<Long, List<Developer>> developerMap = new ServiceTest().getDevelopersPortion(pageSize, pageNum, language, level);
+        developers = developerService.findAll(--pageNum, pageSize, language, level);
 
         long rowCount = developers.size();
 

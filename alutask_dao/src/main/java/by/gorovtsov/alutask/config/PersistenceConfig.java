@@ -18,7 +18,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"by.gorovtsov.alutask.repository", "by.gorovtsov.alutask.dao", "by.gorovtsov.alutask.service", "by.gorovtsov.alutask.controller"})
+@ComponentScan(basePackages = {"by.gorovtsov.alutask.repository", "by.gorovtsov.alutask.dao"})
 @EnableJpaRepositories(basePackages = "by.gorovtsov.alutask.repository")
 @PropertySource("classpath:database.properties")
 public class PersistenceConfig {
@@ -60,7 +60,7 @@ public class PersistenceConfig {
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("by.gorovtsov.alutask.entity");
+        factory.setPackagesToScan("by.gorovtsov.alutask.entity", "by.gorovtsov.alutask.service");
         factory.setDataSource(dataSource());
         factory.setJpaProperties(jpaProperties());
         return factory;

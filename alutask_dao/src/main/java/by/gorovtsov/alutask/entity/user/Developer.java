@@ -5,9 +5,22 @@ import by.gorovtsov.alutask.entity.project.Task;
 import by.gorovtsov.alutask.enumeration.DeveloperLevel;
 import by.gorovtsov.alutask.enumeration.ProgrammingLanguage;
 import by.gorovtsov.alutask.enumeration.Role;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.AllArgsConstructor;
 
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 import java.util.HashSet;
 import java.util.Set;
 

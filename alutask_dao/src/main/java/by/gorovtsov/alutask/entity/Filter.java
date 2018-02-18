@@ -1,7 +1,6 @@
 package by.gorovtsov.alutask.entity;
 
 import by.gorovtsov.alutask.entity.user.User;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,7 +18,6 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Table(name = "filters")
-@Data
 public class Filter extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
