@@ -3,7 +3,9 @@ package by.gorovtsov.alutask.controller;
 import by.gorovtsov.alutask.entity.user.Developer;
 import by.gorovtsov.alutask.enumeration.DeveloperLevel;
 import by.gorovtsov.alutask.enumeration.ProgrammingLanguage;
+import by.gorovtsov.alutask.service.DeveloperService;
 import by.gorovtsov.alutask.service.ServiceTest;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,47 +20,51 @@ import java.util.Map;
 @WebServlet("/developers")
 public class ControllerTest extends HttpServlet {
 
+    @Autowired
+    DeveloperService developerService;
+
     public static final int DEFAULT_PAGE_SIZE_VALUE = 5;
-    private int elemsOnPage = DEFAULT_PAGE_SIZE_VALUE;
+    private int pageSize = DEFAULT_PAGE_SIZE_VALUE;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int pageNum = 1;
         List<Developer> developers = null;
 
-        ProgrammingLanguage langToFilter = null;
-        DeveloperLevel devLevelToFilter = null;
+        System.out.println(developerService.toString() + "adasdasdasdasdasfdsfad");
+        ProgrammingLanguage language = null;
+        DeveloperLevel level = null;
 
         req.setAttribute("programmingLanguages", ProgrammingLanguage.values());
         req.setAttribute("developerLevels", DeveloperLevel.values());
-        System.out.println("DEBUNG 1 " + langToFilter + " " + devLevelToFilter);
+        System.out.println("DEBUNG 1 " + language + " " + level);
 
         if (req.getSession().getAttribute("currentProgLanguageFilter") != null) {
-            langToFilter = ProgrammingLanguage.valueOf(req.getSession().getAttribute("currentProgLanguageFilter").toString());
+            language = ProgrammingLanguage.valueOf(req.getSession().getAttribute("currentProgLanguageFilter").toString());
             if (req.getSession().getAttribute("currentDevLevelFilter") != null) {
-                devLevelToFilter = DeveloperLevel.valueOf(req.getSession().getAttribute("currentDevLevelFilter").toString());
-                System.out.println("DEBUNG 2 " + langToFilter + " " + devLevelToFilter);
+                level = DeveloperLevel.valueOf(req.getSession().getAttribute("currentDevLevelFilter").toString());
+                System.out.println("DEBUNG 2 " + language + " " + level);
             }
         }
 
         if (req.getParameter("programmingLanguageFilter") != null) {
-            langToFilter = ProgrammingLanguage.valueOf(req.getParameter("programmingLanguageFilter").toString());
+            language = ProgrammingLanguage.valueOf(req.getParameter("programmingLanguageFilter").toString());
             if (req.getParameter("developerLevelFilter") != null) {
-                devLevelToFilter = DeveloperLevel.valueOf(req.getParameter("developerLevelFilter").toString());
+                level = DeveloperLevel.valueOf(req.getParameter("developerLevelFilter").toString());
             }
         }
 
-        req.getSession().setAttribute("currentProgLanguageFilter", langToFilter);
-        req.getSession().setAttribute("currentDevLevelFilter", devLevelToFilter);
+        req.getSession().setAttribute("currentProgLanguageFilter", language);
+        req.getSession().setAttribute("currentDevLevelFilter", level);
 
 
         if (req.getSession().getAttribute("currentElementsToShow") != null) {
-            elemsOnPage = Integer.parseInt(req.getSession().getAttribute("currentElementsToShow").toString());
+            pageSize = Integer.parseInt(req.getSession().getAttribute("currentElementsToShow").toString());
         }
 
         if (req.getParameter("elementsToShow") != null) {
-            elemsOnPage = Integer.parseInt(req.getParameter("elementsToShow"));
-            req.getSession().setAttribute("currentElementsToShow", elemsOnPage);
+            pageSize = Integer.parseInt(req.getParameter("elementsToShow"));
+            req.getSession().setAttribute("currentElementsToShow", pageSize);
         }
 
         if (req.getParameter("pageToShow") != null) {
@@ -66,15 +72,12 @@ public class ControllerTest extends HttpServlet {
             System.out.println(Integer.parseInt(req.getParameter("pageToShow")));
         }
 
-        Map<Long, List<Developer>> developerMap = new ServiceTest().getDevelopersPortion(elemsOnPage, pageNum, langToFilter, devLevelToFilter);
+        developers = developerService.findAll(pageNum, pageSize, language, level);
+        //Map<Long, List<Developer>> developerMap = new ServiceTest().getDevelopersPortion(pageSize, pageNum, language, level);
 
-        long rowCount = 0L;
-        for (Map.Entry<Long, List<Developer>> entry : developerMap.entrySet()) {
-            rowCount = entry.getKey();
-            developers = entry.getValue();
-        }
+        long rowCount = developers.size();
 
-        long pagesCount = rowCount / elemsOnPage + 1;
+        long pagesCount = rowCount / pageSize + 1;
         List<Long> pageNums = new ArrayList<>();
         for (long i = 1; i <= pagesCount; i++) {
             pageNums.add(i);

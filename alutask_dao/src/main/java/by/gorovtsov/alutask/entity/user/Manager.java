@@ -15,7 +15,6 @@ import javax.persistence.EnumType;
 
 import java.util.Set;
 
-@Data
 @Entity
 @Getter
 @Setter

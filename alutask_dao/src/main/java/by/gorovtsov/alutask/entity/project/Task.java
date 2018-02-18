@@ -18,7 +18,6 @@ import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Data
 @Entity
 @Getter
 @Setter
