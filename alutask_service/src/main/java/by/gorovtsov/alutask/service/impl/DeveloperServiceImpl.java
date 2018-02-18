@@ -1,7 +1,7 @@
+/*
 package by.gorovtsov.alutask.service.impl;
 
 import by.gorovtsov.alutask.entity.user.Developer;
-import by.gorovtsov.alutask.entity.user.QDeveloper;
 import by.gorovtsov.alutask.enumeration.DeveloperLevel;
 import by.gorovtsov.alutask.enumeration.ProgrammingLanguage;
 import by.gorovtsov.alutask.enumeration.Role;
@@ -35,3 +35,4 @@ public class DeveloperServiceImpl implements DeveloperService {
         return (List<Developer>) developerRepository.findAll(predicate, new PageRequest(offset, limit));
     }
 }
+*/

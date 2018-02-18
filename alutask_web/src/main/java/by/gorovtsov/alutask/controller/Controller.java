@@ -1,7 +1,7 @@
+/*
 package by.gorovtsov.alutask.controller;
 
 import by.gorovtsov.alutask.entity.user.Developer;
-import by.gorovtsov.alutask.service.ServiceTest;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,3 +25,4 @@ public class Controller extends HttpServlet {
         super.doGet(req, resp);
     }
 }
+*/

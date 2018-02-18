@@ -4,7 +4,6 @@ import by.gorovtsov.alutask.entity.user.Developer;
 import by.gorovtsov.alutask.enumeration.DeveloperLevel;
 import by.gorovtsov.alutask.enumeration.ProgrammingLanguage;
 import by.gorovtsov.alutask.service.DeveloperService;
-import by.gorovtsov.alutask.service.ServiceTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletException;

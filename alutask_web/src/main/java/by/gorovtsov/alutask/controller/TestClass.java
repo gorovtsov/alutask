@@ -1,8 +1,8 @@
+/*
 package by.gorovtsov.alutask.controller;
 
 import by.gorovtsov.alutask.config.PersistenceConfig;
 import by.gorovtsov.alutask.entity.user.Developer;
-import by.gorovtsov.alutask.entity.user.QDeveloper;
 import by.gorovtsov.alutask.enumeration.DeveloperLevel;
 import by.gorovtsov.alutask.enumeration.ProgrammingLanguage;
 import by.gorovtsov.alutask.repository.DeveloperRepository;
@@ -28,3 +28,4 @@ public class TestClass {
         developers.forEach(System.out::println);
     }
 }
+*/
