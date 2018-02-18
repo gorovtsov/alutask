@@ -9,20 +9,14 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.AllArgsConstructor;
 
-
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
+import javax.persistence.Table;
+import javax.persistence.ManyToMany;
+import javax.persistence.Column;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
-
-
-
 
 import java.util.Set;
 
@@ -41,7 +35,7 @@ public class User extends BaseEntity {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "recievers")
+    @ManyToMany(mappedBy = "recievers")
     private Set<Letter> emailContainer;
 
     @Column(name = "login", nullable = false, unique = true)
