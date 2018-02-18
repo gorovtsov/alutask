@@ -4,8 +4,9 @@ import by.gorovtsov.alutask.entity.user.Developer;
 import by.gorovtsov.alutask.enumeration.DeveloperLevel;
 import by.gorovtsov.alutask.enumeration.ProgrammingLanguage;
 import by.gorovtsov.alutask.service.DeveloperService;
-import by.gorovtsov.alutask.service.ServiceTest;
+import by.gorovtsov.alutask.service.impl.BeanHolderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+@Component
 @WebServlet("/developers")
 public class ControllerTest extends HttpServlet {
 
@@ -28,10 +29,11 @@ public class ControllerTest extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
         int pageNum = 1;
         List<Developer> developers = null;
 
-        System.out.println(developerService.toString() + "adasdasdasdasdasfdsfad");
         ProgrammingLanguage language = null;
         DeveloperLevel level = null;
 
@@ -48,9 +50,9 @@ public class ControllerTest extends HttpServlet {
         }
 
         if (req.getParameter("programmingLanguageFilter") != null) {
-            language = ProgrammingLanguage.valueOf(req.getParameter("programmingLanguageFilter").toString());
+            language = ProgrammingLanguage.valueOf(req.getParameter("programmingLanguageFilter").toString().toUpperCase());
             if (req.getParameter("developerLevelFilter") != null) {
-                level = DeveloperLevel.valueOf(req.getParameter("developerLevelFilter").toString());
+                level = DeveloperLevel.valueOf(req.getParameter("developerLevelFilter").toString().toUpperCase());
             }
         }
 

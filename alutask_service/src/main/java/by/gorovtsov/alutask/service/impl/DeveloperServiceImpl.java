@@ -10,9 +10,12 @@ import by.gorovtsov.alutask.service.DeveloperService;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DeveloperServiceImpl implements DeveloperService {
 
     @Autowired
@@ -22,16 +25,15 @@ public class DeveloperServiceImpl implements DeveloperService {
     public  List<Developer> findAll(int offset, int limit, ProgrammingLanguage language, DeveloperLevel level) {
         QDeveloper developer = QDeveloper.developer;
 
-        Predicate predicate = developer.role.eq(Role.DEVELOPER);
+        Predicate predicate = developer.language.eq(language).and(developer.level.eq(level));
 
-        if (language != null) {
-            developer.language.eq(language);
-        }
-
-        if (level != null) {
-            developer.level.eq(level);
-        }
-
-        return (List<Developer>) developerRepository.findAll(predicate, new PageRequest(offset, limit));
+        return developerRepository.findAll(predicate, new PageRequest(offset, limit)).getContent();
     }
+
+    @Override
+    public List<Developer> findAll() {
+        return (List<Developer>) developerRepository.findAll();
+    }
+
+
 }

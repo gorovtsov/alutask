@@ -3,9 +3,9 @@ package by.gorovtsov.alutask.repository;
 import by.gorovtsov.alutask.entity.user.Developer;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public interface DeveloperRepository extends CrudRepository<Developer, Long>, QueryDslPredicateExecutor<Developer> {
 
     Developer findByName(String name);
