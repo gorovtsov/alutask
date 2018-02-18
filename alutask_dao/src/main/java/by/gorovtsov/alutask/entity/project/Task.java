@@ -5,10 +5,7 @@ import by.gorovtsov.alutask.entity.embedded.Timer;
 import by.gorovtsov.alutask.entity.message.Comment;
 import by.gorovtsov.alutask.entity.user.Developer;
 import by.gorovtsov.alutask.enumeration.TaskStatus;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;

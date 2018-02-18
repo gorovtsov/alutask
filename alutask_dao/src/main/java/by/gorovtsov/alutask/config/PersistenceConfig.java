@@ -2,6 +2,7 @@ package by.gorovtsov.alutask.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -17,7 +18,8 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"by.gorovtsov.alutask.repository", "by.gorovtsov.alutask.service"})
+@ComponentScan(basePackages = "by.gorovtsov.alutask.repository")
+@EnableJpaRepositories(basePackages = "by.gorovtsov.alutask.repository")
 @PropertySource("classpath:database.properties")
 public class PersistenceConfig {
     @Value("${jdbc.driver}")
@@ -58,7 +60,7 @@ public class PersistenceConfig {
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("by.gorovtsov.alutask.entity");
+        factory.setPackagesToScan("by.gorovtsov.alutask.entity", "by.gorovtsov.alutask.service");
         factory.setDataSource(dataSource());
         factory.setJpaProperties(jpaProperties());
         return factory;

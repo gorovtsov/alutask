@@ -3,10 +3,7 @@ package by.gorovtsov.alutask.entity.user;
 import by.gorovtsov.alutask.entity.project.Project;
 import by.gorovtsov.alutask.enumeration.Department;
 import by.gorovtsov.alutask.enumeration.Role;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

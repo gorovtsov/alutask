@@ -5,6 +5,8 @@ import by.gorovtsov.alutask.enumeration.DeveloperLevel;
 import by.gorovtsov.alutask.enumeration.ProgrammingLanguage;
 import by.gorovtsov.alutask.service.DeveloperService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import test.BeanHolderService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,23 +16,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 @WebServlet("/developers")
 public class ControllerTest extends HttpServlet {
 
-    @Autowired
-    DeveloperService developerService;
+    DeveloperService developerService = BeanHolderService.getDeveloperService();
 
     public static final int DEFAULT_PAGE_SIZE_VALUE = 5;
     private int pageSize = DEFAULT_PAGE_SIZE_VALUE;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
         int pageNum = 1;
         List<Developer> developers = null;
 
-        System.out.println(developerService.toString() + "adasdasdasdasdasfdsfad");
         ProgrammingLanguage language = null;
         DeveloperLevel level = null;
 
@@ -47,9 +49,9 @@ public class ControllerTest extends HttpServlet {
         }
 
         if (req.getParameter("programmingLanguageFilter") != null) {
-            language = ProgrammingLanguage.valueOf(req.getParameter("programmingLanguageFilter").toString());
+            language = ProgrammingLanguage.valueOf(req.getParameter("programmingLanguageFilter").toString().toUpperCase());
             if (req.getParameter("developerLevelFilter") != null) {
-                level = DeveloperLevel.valueOf(req.getParameter("developerLevelFilter").toString());
+                level = DeveloperLevel.valueOf(req.getParameter("developerLevelFilter").toString().toUpperCase());
             }
         }
 
@@ -71,8 +73,7 @@ public class ControllerTest extends HttpServlet {
             System.out.println(Integer.parseInt(req.getParameter("pageToShow")));
         }
 
-        developers = developerService.findAll(pageNum, pageSize, language, level);
-        //Map<Long, List<Developer>> developerMap = new ServiceTest().getDevelopersPortion(pageSize, pageNum, language, level);
+        developers = developerService.findAll(--pageNum, pageSize, language, level);
 
         long rowCount = developers.size();
 

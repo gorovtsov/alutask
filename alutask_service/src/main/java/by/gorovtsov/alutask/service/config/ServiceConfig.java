@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@ComponentScan(basePackages = {"by.gorovtsov.alutask.service"})
 @Import(PersistenceConfig.class)
+@ComponentScan(basePackages =  "by.gorovtsov.alutask.service")
 public class ServiceConfig {
 }

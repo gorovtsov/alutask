@@ -7,14 +7,7 @@ import by.gorovtsov.alutask.enumeration.ProgrammingLanguage;
 import by.gorovtsov.alutask.enumeration.Role;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.EnumType;
-import javax.persistence.Table;
-import javax.persistence.ManyToMany;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,10 +29,10 @@ public class Developer extends User {
     @Enumerated(EnumType.STRING)
     private DeveloperLevel level;
 
-    @OneToMany(mappedBy = "developer")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "developer")
     private Set<Task> tasks = new HashSet<>();
 
-    @ManyToMany(mappedBy = "developers")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "developers")
     private Set<Project> projects;
 
     public Developer(String name, String login, String email, String password,
