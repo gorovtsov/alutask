@@ -27,11 +27,6 @@
       <version>1.16.20</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
-      <version>5.2.10.Final</version>
-    </dependency>
   </dependencies>
   <modules>
     <module>alutask_web</module>
@@ -66,7 +61,7 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
-          <compilerArgument>-proc:none</compilerArgument>
+          <!--<compilerArgument>-proc:none</compilerArgument>-->
         </configuration>
       </plugin>
     </plugins>

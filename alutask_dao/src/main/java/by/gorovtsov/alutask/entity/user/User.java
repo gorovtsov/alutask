@@ -9,7 +9,15 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.AllArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.InheritanceType;
+import javax.persistence.Inheritance;
 
 import java.util.Set;
 

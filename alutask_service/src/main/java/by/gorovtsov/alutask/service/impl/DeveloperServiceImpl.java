@@ -1,35 +1,42 @@
 package by.gorovtsov.alutask.service.impl;
 
+import by.gorovtsov.alutask.entity.dto.DeveloperPageDto;
 import by.gorovtsov.alutask.entity.user.Developer;
-import by.gorovtsov.alutask.entity.user.QDeveloper;
 import by.gorovtsov.alutask.enumeration.DeveloperLevel;
 import by.gorovtsov.alutask.enumeration.ProgrammingLanguage;
 import by.gorovtsov.alutask.repository.DeveloperRepository;
 import by.gorovtsov.alutask.service.DeveloperService;
-import com.querydsl.core.types.Predicate;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
 public class DeveloperServiceImpl implements DeveloperService {
 
+    @Getter
+    @Setter
     @Autowired
-    DeveloperRepository developerRepository;
+    private DeveloperRepository developerRepository;
 
     @SuppressWarnings("unchecked")
-    public  List<Developer> findAll(int offset, int limit, ProgrammingLanguage language, DeveloperLevel level) {
-        QDeveloper developer = QDeveloper.developer;
+    public DeveloperPageDto findFiltered(int offset, int limit, ProgrammingLanguage language, DeveloperLevel level) {
+        /*QDeveloper developer = QDeveloper.developer;
         Predicate predicate = null;
-        if (language != null && level != null){
+        if (language != null && level != null) {
             predicate = developer.language.eq(language).and(developer.level.eq(level));
         } else {
             return (List<Developer>) developerRepository.findAll();
-        }
-
-        return developerRepository.findAll(predicate, new PageRequest(offset, limit)).getContent();
+        }*/
+        List<Developer> developers =
+                developerRepository
+                        .findByLanguageAndLevel(language, level, (Pageable) new PageRequest(offset, limit));
+        DeveloperPageDto page = new DeveloperPageDto(developers, developers.size());
+        return page;
     }
 
     @Override

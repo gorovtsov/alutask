@@ -4,7 +4,9 @@ import by.gorovtsov.alutask.entity.BaseEntity;
 import by.gorovtsov.alutask.entity.embedded.Timer;
 import by.gorovtsov.alutask.entity.user.Developer;
 import by.gorovtsov.alutask.entity.user.Manager;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 import javax.persistence.Entity;

@@ -38,13 +38,11 @@ public class ControllerTest extends HttpServlet {
 
         req.setAttribute("programmingLanguages", ProgrammingLanguage.values());
         req.setAttribute("developerLevels", DeveloperLevel.values());
-        System.out.println("DEBUNG 1 " + language + " " + level);
 
         if (req.getSession().getAttribute("currentProgLanguageFilter") != null) {
             language = ProgrammingLanguage.valueOf(req.getSession().getAttribute("currentProgLanguageFilter").toString());
             if (req.getSession().getAttribute("currentDevLevelFilter") != null) {
                 level = DeveloperLevel.valueOf(req.getSession().getAttribute("currentDevLevelFilter").toString());
-                System.out.println("DEBUNG 2 " + language + " " + level);
             }
         }
 
