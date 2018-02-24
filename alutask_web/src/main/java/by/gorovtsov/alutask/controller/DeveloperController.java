@@ -18,25 +18,33 @@ import java.util.List;
 @SessionAttributes({"currentDevLevelFilter", "currentProgLanguageFilter", "currentPageNum", "currentPageSize"})
 public class DeveloperController {
 
+    private final int defaultPageNumber = 1;
+    private final int defaultPageSize = 5;
+
     @Autowired
-    DeveloperService developerService;
+    private DeveloperService developerService;
 
     private int currentPageNum;
     private int currentPageSize;
     private ProgrammingLanguage programmingLanguage;
     private DeveloperLevel developerLevel;
-    List<Developer> developers;
+    private List<Developer> developers;
 
     //default values init
     {
-        currentPageNum = 1;
-        currentPageSize = 5;
+        currentPageNum = defaultPageNumber;
+        currentPageSize = defaultPageSize;
         programmingLanguage = ProgrammingLanguage.JAVA;
         developerLevel = DeveloperLevel.JUNIOR;
     }
 
+    @GetMapping(path = "/test")
+    public String testPageShow() {
+        return "test";
+    }
+
     @GetMapping(path = "/developers")
-    public String showDevelopers(Model model, int pageNum, int pageSize, String languageToFilter, String levelToFilter ) {
+    public String showDevelopers(Model model, int pageNum, int pageSize, String languageToFilter, String levelToFilter) {
         DeveloperPageDto page = null;
         List<Integer> pageNumsList = null;
 
@@ -74,7 +82,7 @@ public class DeveloperController {
 
 
     private void setProgrammingLanguage(String language, Model model) {
-        if (language != null){
+        if (language != null) {
             programmingLanguage = ProgrammingLanguage.valueOf(language.toUpperCase());
             model.addAttribute("currentProgLanguageFilter", programmingLanguage);
         }

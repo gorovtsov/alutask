@@ -25,18 +25,15 @@ public class DeveloperServiceImpl implements DeveloperService {
 
     @SuppressWarnings("unchecked")
     public DeveloperPageDto findFiltered(int offset, int limit, ProgrammingLanguage language, DeveloperLevel level) {
-        /*QDeveloper developer = QDeveloper.developer;
-        Predicate predicate = null;
-        if (language != null && level != null) {
-            predicate = developer.language.eq(language).and(developer.level.eq(level));
-        } else {
-            return (List<Developer>) developerRepository.findAll();
-        }*/
         List<Developer> developers =
                 developerRepository
-                        .findByLanguageAndLevel(language, level, (Pageable) new PageRequest(offset, limit));
-        DeveloperPageDto page = new DeveloperPageDto(developers, developers.size());
-        return page;
+                        .findByLanguageAndLevel(language.toString().toUpperCase(),
+                                                level.toString().toUpperCase(),
+                                                (Pageable) new PageRequest(offset, limit));
+
+        int totalCount = developerRepository.countByLanguageAndLevel(language, level);
+
+        return new DeveloperPageDto(developers, totalCount);
     }
 
     @Override
