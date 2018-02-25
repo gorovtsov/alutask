@@ -2,10 +2,7 @@ package by.gorovtsov.alutask.entity.message;
 
 import by.gorovtsov.alutask.entity.project.Task;
 import by.gorovtsov.alutask.entity.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
