@@ -1,14 +1,12 @@
-package by.gorovtsov.alutask.test.entity;
+package by.gorovtsov.alutask.service.test;
 
 import by.gorovtsov.alutask.config.PersistenceConfig;
+import by.gorovtsov.alutask.config.ServiceConfig;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.transaction.Transactional;
-
 @RunWith(SpringRunner.class)
-@Transactional
-@ContextConfiguration(classes = PersistenceConfig.class)
-public abstract class BaseTest {
+@ContextConfiguration(classes = ServiceConfig.class)
+public abstract class BaseServiceTest {
 }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/mainstyle.css" th:href="@{/css/mainstyle.css}" />
+</head>
+<body>
+<div id="allcontent">
+    <div id="header">
+        <img src="src/img/mainHeader.gif" alt="Alutask. Just try to use" />
+    </div>
+
+    <div id="main">
+        <table>
+            <tr>
+                <th>Login</th>
+                <th>Name</th>
+                <th>e-Mail</th>
+                <th>Programming Language</th>
+                <th>Level</th>
+            </tr>
+                <tr th:each="developer : ${developers}">
+                    <td align="center" th:text="${developer.login}"></td>
+                    <td align="center" th:text="${developer.name}"></td>
+                    <td align="center" th:text="${developer.email}"></td>
+                    <td align="center" th:text="${developer.language}"></td>
+                    <td align="center" th:text="${developer.level}"></td>
+                </tr>
+        </table>
+    </div>
+
+    <div id="sidebar">
+
+        <p class="beanheading">
+            <img src="src/img/sidebarBooks.gif" alt="Alutask" /> <br />
+            <span class="slogan">
+            JUST <br />
+            TRY <br />
+            IT <br />
+        </span>
+        </p>
+        <p>
+            Hello. Alutask is still implementing, but we really trying to do everything
+            to release our great project. Hope you'll enjoy it.... later)
+        </p>
+    </div>
+
+    <div id="footer">
+        &copy; 2018, Alexander Gorovtsov
+        <br />
+        Web project made specially for JD02 ITAcademy.by.
+    </div>
+</div>
+</body>
+</html>
