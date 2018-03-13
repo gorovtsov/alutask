@@ -27,7 +27,7 @@ public abstract class BaseDialog extends BaseEntity {
     @Column(name = "sending_time", nullable = false)
     private LocalDateTime creationTime;
 
-    protected BaseDialog(User author, String message, LocalDateTime creationTime) {
+    public BaseDialog(User author, String message, LocalDateTime creationTime) {
         this.author = author;
         this.message = message;
         this.creationTime = creationTime;

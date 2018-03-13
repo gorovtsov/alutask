@@ -16,10 +16,10 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
+@ToString(exclude = {"emailContainer", "password"})
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User extends BaseEntity {
     @Column(name = "name", nullable = false)
@@ -28,7 +28,7 @@ public class User extends BaseEntity {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "recievers")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "recievers")
     private Set<Letter> emailContainer;
 
     @Column(name = "login", nullable = false, unique = true)
@@ -41,7 +41,7 @@ public class User extends BaseEntity {
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    protected User(String name, String login, String email, String password, Role role) {
+    public User(String name, String login, String email, String password, Role role) {
         this.name = name;
         this.login = login;
         this.email = email;

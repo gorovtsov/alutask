@@ -13,6 +13,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.version>5.0.3.RELEASE</spring.version>
+    <spring-security.version>5.0.1.RELEASE</spring-security.version>
+    <aspectj.version>1.6.11</aspectj.version>
   </properties>
 
   <dependencies>
@@ -50,7 +52,49 @@
 
     <dependency>
       <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>${aspectj.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectj.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>${spring-security.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${spring-security.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${spring-security.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
       <version>${spring.version}</version>
     </dependency>
   </dependencies>
@@ -101,8 +145,8 @@
       <version>3.0.0</version>
       <executions>
         <execution>
-          <id>validate</id>
-          <phase>validate</phase>
+          <id>site</id>
+          <phase>site</phase>
           <configuration>
             <configLocation>checkstyle.xml</configLocation>
             <encoding>UTF-8</encoding>
@@ -115,6 +159,8 @@
         </execution>
       </executions>
     </plugin>
+
+
   </plugins>
   </build>
 </project>

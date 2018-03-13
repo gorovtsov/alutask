@@ -48,6 +48,10 @@ public class Task extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
 
+    @Version
+    @Column(name = "version")
+    private Long version;
+
     public Task(Project project, String name, String description, Developer developer, Timer timer) {
         this.project = project;
         this.name = name;

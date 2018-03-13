@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/resources/css/mainstyle.css}" type="text/css" rel="stylesheet"
+          href="/resources/css/mainstyle.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <title>Alutask | Profile</title>
+<body>
+<div class="container">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-3">Alutask <small>by Gorovtsov</small></h1>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="card" style="width:350px">
+            <img class="card-img-top" th:src="@{/resources/src/img/img_profile.jpg}" src="/resources/src/img/img_profile.jpg" alt="Card image" style="width:100%">
+            <div class="card-body">
+                <h4 class="card-title">Alexander</h4>
+                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>ending Time</th>
+                </tr>
+                </thead>
+                <tr th:each="project : ${projects}">
+                    <td align="center" th:text="${project.name}"></td>
+                    <td align="center" th:text="${project.timer.end}"></td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="w-50 mx-auto">
+            <p>&copy; 2018, Alexander Gorovtsov
+                Web project made specially for JD02 ITAcademy.by.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

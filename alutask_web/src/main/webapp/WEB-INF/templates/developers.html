@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" type="text/css" media="all"
-          href="../../css/mainstyle.css" th:href="@{/css/mainstyle.css}" />
+    <link th:href="@{/resources/css/mainstyle.css}" type="text/css" rel="stylesheet"
+    href="/resources/css/mainstyle.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <title>Alutask | Developers</title>
 </head>
 <body>
-<div id="allcontent">
-    <div id="header">
-        <img src="src/img/mainHeader.gif" alt="Alutask. Just try to use" />
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-3">Alutask <small>by Gorovtsov</small></h1>
     </div>
 
-    <div id="main">
-        <table>
+    <div class="row">
+    <div class="col-lg-10">
+        <table class="table table-hover">
+            <thead class="thead-dark">
             <tr>
                 <th>Login</th>
                 <th>Name</th>
@@ -19,6 +33,7 @@
                 <th>Programming Language</th>
                 <th>Level</th>
             </tr>
+            </thead>
                 <tr th:each="developer : ${developers}">
                     <td align="center" th:text="${developer.login}"></td>
                     <td align="center" th:text="${developer.name}"></td>
@@ -29,26 +44,41 @@
         </table>
     </div>
 
-    <div id="sidebar">
 
-        <p class="beanheading">
-            <img src="src/img/sidebarBooks.gif" alt="Alutask" /> <br />
-            <span class="slogan">
-            JUST <br />
-            TRY <br />
-            IT <br />
-        </span>
-        </p>
-        <p>
-            Hello. Alutask is still implementing, but we really trying to do everything
-            to release our great project. Hope you'll enjoy it.... later)
-        </p>
+    <div class="col-lg-2">
+        <form th:action="@{/developers}" method="post" th:object="${developerFilter}">
+
+            <select class="form-control" th:field="*{language}">
+                <span th:each="languageToSelect : ${programmingLanguages}">
+                    <option th:text="${#strings.capitalize(#strings.toLowerCase(languageToSelect))}" th:value="${languageToSelect}">
+                    </option>
+                </span>
+            </select> <br/>
+
+            <select class="form-control" th:field="*{level}">
+                <span th:each="levelToSelect : ${developerLevels}">
+                    <option th:text="${#strings.capitalize(#strings.toLowerCase(levelToSelect))}" th:value="${levelToSelect}">
+                    </option>
+                </span>
+            </select> <br/>
+
+            <select  class="form-control" th:field="*{pageSize}">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+            </select>
+
+            <input type="submit" class="btn btn-block" value="Refresh list">
+
+        </form>
+    </div>
     </div>
 
-    <div id="footer">
-        &copy; 2018, Alexander Gorovtsov
-        <br />
-        Web project made specially for JD02 ITAcademy.by.
+    <div class="row">
+    <div class="w-50 mx-auto">
+        <p>&copy; 2018, Alexander Gorovtsov
+            Web project made specially for JD02 ITAcademy.by.</p>
+    </div>
     </div>
 </div>
 </body>

@@ -26,11 +26,11 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "developers")
 @PrimaryKeyJoinColumn(name = "user_id")
+@ToString(exclude = {"tasks", "projects"}, callSuper = true)
 public class Developer extends User {
 
     @Column(name = "prog_lang", nullable = false)
@@ -41,16 +41,18 @@ public class Developer extends User {
     @Enumerated(EnumType.STRING)
     private DeveloperLevel level;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "developer")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "developer")
     private Set<Task> tasks = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "developers")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "developers")
     private Set<Project> projects;
 
     public Developer(String name, String login, String email, String password,
-                    ProgrammingLanguage language, DeveloperLevel level) {
+                     ProgrammingLanguage language, DeveloperLevel level) {
         super(name, login, email, password, Role.DEVELOPER);
         this.language = language;
         this.level = level;
     }
 }
+
+

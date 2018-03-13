@@ -5,6 +5,8 @@ import by.gorovtsov.alutask.entity.embedded.Timer;
 import by.gorovtsov.alutask.entity.user.Developer;
 import by.gorovtsov.alutask.entity.user.Manager;
 import lombok.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 
 import javax.persistence.Entity;
