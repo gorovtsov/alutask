@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+
+    <defaultCache maxEntriesLocalHeap="10000" eternal="false"
+                  timeToIdleSeconds="120" timeToLiveSeconds="120" diskSpoolBufferSizeMB="30"
+                  maxEntriesLocalDisk="10000000" diskExpiryThreadIntervalSeconds="120"
+                  memoryStoreEvictionPolicy="LRU" statistics="true">
+        <persistence strategy="localTempSwap"/>
+    </defaultCache>
+
+    <cache name="projectRegion"
+           maxElementsInMemory="500"
+           eternal="false"
+           timeToIdleSeconds="600"
+           timeToLiveSeconds="600"/>
+
+    <cache name="taskRegion"
+           maxElementsInMemory="500"
+           eternal="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="600"/>
+
+    <cache name="developerRegion"
+           maxElementsInMemory="500"
+           eternal="false"
+           timeToIdleSeconds="18000"
+           timeToLiveSeconds="600"/>
+</ehcache>

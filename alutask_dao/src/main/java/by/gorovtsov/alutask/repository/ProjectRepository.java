@@ -18,8 +18,9 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
 
     List<Project> findTop5ByManagerNameOrderByTimerEndAsc(String managerName);
 
-    List<Project> findTop5ByManagerLoginOrderByTimerEndAsc(String managerLogin);
 
+    @Cacheable("projectRegion")
+    List<Project> findTop5ByManagerLoginOrderByTimerEndAsc(String managerLogin);
 
     Project findByName(String name);
 }
