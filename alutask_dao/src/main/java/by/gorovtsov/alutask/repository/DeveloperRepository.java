@@ -1,5 +1,6 @@
 package by.gorovtsov.alutask.repository;
 
+import by.gorovtsov.alutask.entity.project.Project;
 import by.gorovtsov.alutask.entity.user.Developer;
 import by.gorovtsov.alutask.enumeration.DeveloperLevel;
 import by.gorovtsov.alutask.enumeration.ProgrammingLanguage;
@@ -22,4 +23,5 @@ public interface DeveloperRepository extends CrudRepository<Developer, Long>, Pa
 
     Long countByLanguageAndLevel(ProgrammingLanguage language, DeveloperLevel level);
 
+    List<Developer> findByProjectsContains(Project project);
 }

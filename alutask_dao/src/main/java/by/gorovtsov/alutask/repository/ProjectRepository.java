@@ -10,14 +10,12 @@ import java.util.List;
 
 @Repository
 public interface ProjectRepository extends CrudRepository<Project, Long> {
-    List<Project> findByManagerName(String managerName);
+
+    List<Project> findByManagerLogin(String username);
 
     List<Project> findTop5ByManagerName(String managerName);
 
-    List<Project> findByTimerStartOrderByTimerStartAsc(LocalDateTime localDateTime);
-
     List<Project> findTop5ByManagerNameOrderByTimerEndAsc(String managerName);
-
 
     @Cacheable("projectRegion")
     List<Project> findTop5ByManagerLoginOrderByTimerEndAsc(String managerLogin);

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +26,7 @@ public class DeveloperServiceImpl implements DeveloperService {
     @Override
     public List<Developer> findPageByLanguageAndLevel(ProgrammingLanguage language, DeveloperLevel level, int pageNum, int pageSize) {
         PageRequest pageRequest = new PageRequest(pageNum, pageSize);
-        List<Developer> developers = repository.findByLanguageAndLevel(language, level, pageRequest).getContent();
-        return developers;
+        return repository.findByLanguageAndLevel(language, level, pageRequest).getContent();
     }
 
     @Override
@@ -43,5 +41,10 @@ public class DeveloperServiceImpl implements DeveloperService {
         }
 
         return pageNums;
+    }
+
+    @Override
+    public Developer findByLogin(String username) {
+        return repository.findByLogin(username);
     }
 }

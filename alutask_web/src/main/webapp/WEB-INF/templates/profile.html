@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <link th:href="@{/resources/css/mainstyle.css}" type="text/css" rel="stylesheet"
           href="/resources/css/mainstyle.css">
@@ -12,34 +13,38 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <title>Alutask | Profile</title>
+    </head>
 <body>
-<div class="container">
-    <div class="jumbotron jumbotron-fluid">
+<div class="container-fluid">
+    <div class="jumbotron">
         <h1 class="display-3">Alutask <small>by Gorovtsov</small></h1>
     </div>
 
     <div class="row">
-        <div class="col-lg-1"></div>
+        <div class="col-2">
+            <a class="btn btn-primary w-100" th:href="@{/projects}">All my projects</a>
+        </div>
         <div class="card" style="width:350px">
-            <img class="card-img-top" th:src="@{/resources/src/img/img_profile.jpg}" src="/resources/src/img/img_profile.jpg" alt="Card image" style="width:100%">
             <div class="card-body">
-                <h4 class="card-title">Alexander</h4>
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
+                <h4 class="card-title" th:text="${user.name}">Username</h4>
+                <p class="card-text" th:text="${#authentication.authorities.iterator().next()}">Role</p>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-4" th:if="${#authorization.expression('hasAuthority(''MANAGER'')')}">
             <table class="table table-hover">
                 <thead class="thead-dark">
                 <tr>
-                    <th>Name</th>
-                    <th>ending Time</th>
+                    <th align="center">Name</th>
+                    <th align="center">Ending Time</th>
+                    <th align="center"></th>
                 </tr>
                 </thead>
                 <tr th:each="project : ${projects}">
                     <td align="center" th:text="${project.name}"></td>
                     <td align="center" th:text="${project.timer.end}"></td>
-
+                    <td align="center">
+                        <a class="btn btn-primary w-100" th:href="@{/project/${project.id}}">Go to project</a>
+                    </td>
                 </tr>
             </table>
         </div>
