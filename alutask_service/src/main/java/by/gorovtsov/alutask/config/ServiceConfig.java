@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @ComponentScan(basePackages = "by.gorovtsov.alutask.service")
-@Import(PersistenceConfig.class)
+@Import({PersistenceConfig.class})
 @EnableAspectJAutoProxy
 public class ServiceConfig {
     @Bean
