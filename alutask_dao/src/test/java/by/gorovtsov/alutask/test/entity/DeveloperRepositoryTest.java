@@ -2,6 +2,7 @@ package by.gorovtsov.alutask.test.entity;
 
 import by.gorovtsov.alutask.entity.user.Developer;
 import by.gorovtsov.alutask.repository.DeveloperRepository;
+import by.gorovtsov.alutask.repository.TestRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

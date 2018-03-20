@@ -1,14 +1,12 @@
 package by.gorovtsov.alutask.config;
 
+import by.gorovtsov.alutask.aspect.DaoLoggerAspect;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -23,6 +21,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@EnableAspectJAutoProxy
 @PropertySource("classpath:database.properties")
 @EnableJpaRepositories(basePackages = "by.gorovtsov.alutask.repository")
 @Import(CachingConfig.class)
@@ -89,4 +88,8 @@ public class PersistenceConfig {
         return transactionManager;
     }
 
+    @Bean
+    public DaoLoggerAspect daoLoggerAspect() {
+        return new DaoLoggerAspect();
+    }
 }
