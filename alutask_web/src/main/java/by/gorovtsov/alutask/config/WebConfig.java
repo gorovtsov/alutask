@@ -11,6 +11,8 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping;
 
 import java.util.List;
 
@@ -32,10 +34,23 @@ public class WebConfig extends WebMvcConfigurerAdapter{
         return new MappingJackson2HttpMessageConverter(mapper);
     }
 
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**")
                 .addResourceLocations("/resources/");
+    }
+
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
+        interceptor.setParamName("language");
+        return interceptor;
+    }
+
+    @Bean
+    public ControllerClassNameHandlerMapping handlerMapping() {
+        ControllerClassNameHandlerMapping controllerClassNameHandlerMapping = new ControllerClassNameHandlerMapping();
+        controllerClassNameHandlerMapping.setInterceptors(localeChangeInterceptor());
+        return controllerClassNameHandlerMapping;
     }
 }

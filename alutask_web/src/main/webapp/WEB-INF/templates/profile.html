@@ -22,7 +22,7 @@
 
     <div class="row">
         <div class="col-2">
-            <a class="btn btn-primary w-100" th:href="@{/projects}">All my projects</a>
+            <a class="btn btn-primary w-100" th:href="@{/projects}" th:text="#{label.allmyprojects}">All my projects</a>
         </div>
         <div class="card" style="width:350px">
             <div class="card-body">
@@ -43,7 +43,7 @@
                     <td align="center" th:text="${project.name}"></td>
                     <td align="center" th:text="${project.timer.end}"></td>
                     <td align="center">
-                        <a class="btn btn-primary w-100" th:href="@{/project/${project.id}}">Go to project</a>
+                        <a class="btn btn-primary w-100" th:href="@{/project/${project.id}}" th:text="#{label.gotoproject}">Go to project</a>
                     </td>
                 </tr>
             </table>

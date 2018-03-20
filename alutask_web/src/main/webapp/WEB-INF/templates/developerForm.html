@@ -14,7 +14,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <title>Alutask | Home</title>
+    <title>Alutask | Register</title>
 </head>
 <body>
 <div class="container">
@@ -24,22 +24,35 @@
 
     <div class="row">
         <div class="col-lg-10">
-            <h1>Alutask home page</h1>
-            <h3>What is alutask</h3>
-            <p>Alutask is great project tracking system providing you to improve the speed
-                of web applications development by sharp task tracking.</p>
-            <h3>Why Alutask?</h3>
-            <p>Alutask is Alexander Gorovtsov JD2 and diploma project.
-                The web app that can help to start his career as Java WEB Developer</p>
-            <h3>Enjoy it</h3>
-            <p>Alutask team hopes you will enjoy working with their's product</p>
+            <form th:action="@{'/admin/addDeveloper' + ${user.id}}" method="post" th:object="${devDTO}">
+
+                <h4 th:text="${user.name}">User name</h4>
+                <h5 th:text="${user.login}">username</h5>
+
+                <div class="form-group">
+                    <select th:field="*{language}">
+                        <span th:each="language : ${programmingLanguages}">
+                            <option th:value="${language}" th:text="${language}"></option>
+                        </span>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <select th:field="*{level}">
+                        <span th:each="level : ${developerLevels}">
+                            <option th:value="${level}" th:text="${level.name()}">Level</option>
+                        </span>
+                    </select>
+                </div>
+
+                <input type="submit" class="btn btn-block" th:value="#{label.save}">
+
+            </form>
         </div>
 
 
         <div class="col-lg-2">
-            <a class="btn btn-primary w-100" th:href="@{/profile}" th:text="#{label.myprofile}">My Profile</a>
-            <a class="btn btn-primary w-100" th:href="@{/admin}" th:text="#{label.toadminpanel}"
-               th:if="${#authorization.expression('hasAuthority(''ADMINISTRATOR'')')}">To admin panel</a>
+
         </div>
     </div>
 

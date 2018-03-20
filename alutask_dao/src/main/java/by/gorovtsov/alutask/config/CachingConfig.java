@@ -1,5 +1,6 @@
 package by.gorovtsov.alutask.config;
 
+import by.gorovtsov.alutask.aspect.DaoLoggerAspect;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;

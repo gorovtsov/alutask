@@ -8,6 +8,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
     User findByLogin(String login);
@@ -18,4 +20,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Modifying
     @Query("update User u set u.role = :role where u.id = :userId")
     void changeUserRole(@Param("userId") Long userId, @Param("role") Role role);
+
+    List<User> findByRole(Role role);
 }

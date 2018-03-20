@@ -21,7 +21,6 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableAspectJAutoProxy
 @PropertySource("classpath:database.properties")
 @EnableJpaRepositories(basePackages = "by.gorovtsov.alutask.repository")
 @Import(CachingConfig.class)
@@ -88,8 +87,4 @@ public class PersistenceConfig {
         return transactionManager;
     }
 
-    @Bean
-    public DaoLoggerAspect daoLoggerAspect() {
-        return new DaoLoggerAspect();
-    }
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Service
 @Transactional
@@ -51,5 +52,15 @@ public class UserServiceImpl implements UserService {
 
     private Collection<? extends GrantedAuthority> generateAuthorities(Role role) {
         return Collections.singletonList(new SimpleGrantedAuthority(role.toString()));
+    }
+
+    @Override
+    public User findUserById(Long userId) {
+        return repository.findOne(userId);
+    }
+
+    @Override
+    public List<User> findAllGuests() {
+        return repository.findByRole(Role.GUEST);
     }
 }
