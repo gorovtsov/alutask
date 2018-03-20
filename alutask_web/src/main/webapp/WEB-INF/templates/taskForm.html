@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/resources/css/mainstyle.css}" type="text/css" rel="stylesheet"
+          href="/resources/css/mainstyle.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <title>Alutask | Register</title>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-3">Alutask <small>by Gorovtsov</small></h1>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-10">
+            <form th:action="@{/task/new}" method="post" th:object="${task}">
+
+                <div class="form-group">
+                    <label for="name" th:text="#{label.taskName}">Task name:</label>
+                    <p id="name" th:text="${task.name}"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectName" th:text="#{label.projectName}" >Project name</label>
+                    <input class="form-control" type="text" th:field="*{project.name}" id="projectName"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="description" th:text="#{label.description}">Description</label>
+                    <input class="form-control" type="text" th:field="*{description}" id="description"/>
+                </div>
+
+                <input type="submit" class="btn btn-block" th:value="#{label.save}">
+            </form>
+        </div>
+
+        <div class="col-lg-2">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="w-50 mx-auto">
+            <p>&copy; 2018, Alexander Gorovtsov
+                Web project made specially for JD02 ITAcademy.by.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

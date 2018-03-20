@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
+
 public class ProjectRepositoryTest extends BaseTest {
 
     @Autowired
@@ -14,7 +16,8 @@ public class ProjectRepositoryTest extends BaseTest {
 
     @Test
     public void findTop5Test() {
-        repository.findTop5ByManagerName("Alexander Manager").forEach(project -> System.out.println(project.getName()));
+        List<Project> projects = repository.findTop5ByManagerName("Alexander Manager");
+        assertTrue(projects.size() == 5);
     }
 
     @Test

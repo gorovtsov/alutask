@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/resources/css/mainstyle.css}" type="text/css" rel="stylesheet"
+          href="/resources/css/mainstyle.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <title>Alutask | Developers</title>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-3">Alutask <small>by Gorovtsov</small></h1>
+    </div>
+
+    <div class="row">
+        <div class="col-8 mx-auto">
+            <div th:each="task : ${tasks}">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 th:text="${task.name}">Task Name</h3>
+                        <h4 th:text="${task.project.name}">Project name</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <p th:text="${task.timer.start}">Open time</p>
+                        <p th:text="${task.timer.end}">End time</p>
+                    </div>
+
+                    <div class="card-footer">
+                        <p th:text="${task.developer.name}">Developer Name</p>
+                    </div>
+                    <a class="btn btn-primary w-100" th:href="@{'/task/' + ${task.id}}">Go to Task</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <ul class="pagination" th:each="pageNum : ${pageNums}">
+            <li class="page-item"><a class="page-link" th:href="@{'/projects/' + ${projectId} + '/tasks/' + ${pageNum}}" th:text="${pageNum}"></a></li>
+            <br />
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="w-50 mx-auto">
+            <p>&copy; 2018, Alexander Gorovtsov
+                Web project made specially for JD02 ITAcademy.by.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

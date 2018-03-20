@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <link th:href="@{/resources/css/mainstyle.css}" type="text/css" rel="stylesheet"
+          href="/resources/css/mainstyle.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <title>Alutask | Profile</title>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-3">Alutask <small>by Gorovtsov</small></h1>
+    </div>
+
+    <div class="row">
+        <div class="card" style="width:350px">
+            <div class="card-header" th:text="${project.name}">ProjectName</div>
+            <div class="card-body">
+                <h4 class="card-title" th:text="${project.manager.name}">Manager Name</h4>
+                <p class="card-text" th:text="${project.description}">Project description</p>
+            </div>
+
+            <div class="card-footer">
+                <label for="startTime">Start time</label>
+                <p th:text="${project.timer.start}" id="startTime">Project start Time</p>
+                <label for="endTime">End Time</label>
+                <p th:text="${project.timer.end}" id="endTime">Project end Time</p>
+            </div>
+        </div>
+
+        <div class="col-2">
+            <a class="btn btn-primary w-100" th:href="@{'/projects/' + ${project.id} + '/tasks/1'}">Go to Tasks</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="w-50 mx-auto">
+            <p>&copy; 2018, Alexander Gorovtsov
+                Web project made specially for JD02 ITAcademy.by.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

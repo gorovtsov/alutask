@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/resources/css/mainstyle.css}" type="text/css" rel="stylesheet"
+          href="/resources/css/mainstyle.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <title>Alutask | Tasks</title>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-3">Alutask <small>by Gorovtsov</small></h1>
+    </div>
+
+    <div class="row">
+        <div class="col-10">
+            <h3 th:text="${task.name}">Task name</h3>
+            <h4 th:text="${task.project.name}">Project Name</h4>
+            <p th:text="${task.description}"> Task despription</p>
+            <p th:text="${task.developer.name}">Developer Name</p>
+            <p th:text="${task.closeTime}">Close Time</p>
+
+            <p th:text="${errorMessage}">Error message</p>
+        </div>
+
+        <div class="col-2">
+            <a class="btn btn-primary w-100" th:href="@{'/task/' + ${task.id} + '/edit'}">Edit task</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div th:each="comment : ${task.comments}">
+            <div class="card">
+                <div class="card-header" th:text="${comment.author}">Comment author</div>
+                <div class="card-body" th:text="${comment.message}">Message</div>
+                <div class="card-footer" th:text="${comment.creationTime}">Comment creation time</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="w-50 mx-auto">
+            <p>&copy; 2018, Alexander Gorovtsov
+                Web project made specially for JD02 ITAcademy.by.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

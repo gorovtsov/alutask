@@ -17,7 +17,6 @@ import java.util.List;
 @Repository
 public interface DeveloperRepository extends CrudRepository<Developer, Long>, PagingAndSortingRepository<Developer, Long> {
 
-    @Loggable
     Developer findByLogin(String login);
 
     List<Developer> findAll();
